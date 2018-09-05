@@ -14,6 +14,14 @@ public class Array<E> {
 
     public void add(int index, E e) {
 
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+
+        for (int i = size - 1 ; i >= index; i--) {
+            data[i + 1] = data[i];
+        }
+        data[index] = e;
+        size++;
     }
 
     public void addLast(E e) {
@@ -27,9 +35,25 @@ public class Array<E> {
 
     public E remove(int index) {
 
+        E ret = data[index];
+
+        for (int i = index + 1 ; i < size; i++) {
+            data[i - 1] = data[i];
+        }
+
+        size--;
+        data[size] = null;
+
+        return ret;
+
     }
 
     public void removeElement(E e) {
+
+        int index = find(e);
+        if (inde) {
+
+        }
         remove(index);
     }
 
@@ -47,7 +71,12 @@ public class Array<E> {
     }
 
     public int find(E e) {
-
+        for (int i = 0 ; i < data.length; i++) {
+            if (data[i] == E) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public int getSize() {
